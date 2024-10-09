@@ -1,20 +1,49 @@
-# Welcome to MkDocs
+# Добро пожаловать на сайт Адили
 
-# Всем привет! Это **Адиля** оо
+Это мой кастомизированный сайт на основе MkDocs с использованием Bulma для стилизации. Вы можете увидеть, как легко интегрировать кастомные стили и библиотеку CSS в MkDocs.
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+## Основные команды MkDocs
 
-## Commands
+<div class="columns">
+    <div class="column is-one-third">
+        <div class="card">
+            <h2 class="title is-4">Создать новый проект</h2>
+            <p>`mkdocs new [dir-name]` — создает новую папку с шаблоном проекта MkDocs.</p>
+        </div>
+    </div>
+    <div class="column is-one-third">
+        <div class="card">
+            <h2 class="title is-4">Запустить сервер</h2>
+            <p>`mkdocs serve` — запускает сервер для разработки с автоматической перезагрузкой.</p>
+        </div>
+    </div>
+    <div class="column is-one-third">
+        <div class="card">
+            <h2 class="title is-4">Собрать сайт</h2>
+            <p>`mkdocs build` — собирает сайт в статические файлы для развертывания.</p>
+        </div>
+    </div>
+</div>
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-* `dddfdefe` - Print333333333exit.
+## О проекте
 
-## Project layout
+Этот сайт демонстрирует возможности использования кастомных тем и шаблонов с помощью Jinja2. 
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+### Информация о Bulma
+
+Bulma — это CSS-фреймворк, который предоставляет гибкие и адаптивные стили для создания красивых интерфейсов. Он основан на Flexbox, что позволяет легко создавать сетки и компоненты, которые адаптируются к разным устройствам.
+
+### Примеры использования
+
+- Используйте классы Bulma, чтобы быстро стилизовать ваши элементы.
+- Создавайте адаптивные страницы без необходимости писать много CSS.
+
+### Связь
+
+Если у вас есть вопросы или вы хотите связаться со мной, вы можете написать мне по адресу [your-email@example.com](mailto:your-email@example.com).
+
+## Контакты
+
+- **Имя:** Адиля Батырбекова
+- **Профессия:** Студентка факультета программной инженерии и компьютерной техники
+- **Контакты:** [GitHub](https://github.com/Adilya-Batyrbekova)

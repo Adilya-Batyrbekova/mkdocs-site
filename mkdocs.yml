@@ -1,5 +1,8 @@
-site_name: My Docs
-
+site_name: "Adily's Site"
 theme:
-  name: null
-  custom_dir: 'zn_theme/'
+  name: null  # Отключаем стандартную тему
+  custom_dir: theme  # Указываем директорию с кастомной темой
+nav:
+  - Home: docs/index.md
+extra_css:
+  - theme/styles.css

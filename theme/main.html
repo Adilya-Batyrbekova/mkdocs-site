@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ config.site_name }}</title>
+
+    <!-- <title>{% if page.title %}{{ page.title }} - {% endif %}{{ config.site_name }}</title> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="./theme/styles.css">
+    {%- for path in config.extra_css %}
+      <link href="{{ path | url }}" rel="stylesheet">
+    {%- endfor %}
+</head>
+<body>
+    <header class="hero is-primary">
+        <div class="hero-body">
+            <h1 class="title">{{ config.site_name }}</h1>
+            <h2 class="subtitle">{{ page.title }}</h2>
+        </div>
+    </header>
+
+    <main class="section">
+        {{ page.content }}
+    </main>
+    {%- for script in config.extra_javascript %}
+        {{ script | script_tag }}
+    {%- endfor %}
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>&copy; {{ config.site_name }} - {{ config.copyright }}</p>
+        </div>
+    </footer>
+</body>
+</html>

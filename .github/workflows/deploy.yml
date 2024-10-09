@@ -1,0 +1,63 @@
+name: Deploy MkDocs Site
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main  # Запускать на пуш или pull request в ветку main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest  # Используем Ubuntu для выполнения работы
+    steps:
+      - name: Проверка исходного кода
+        uses: actions/checkout@v2  # Проверяем код из репозитория
+
+      - name: Установка Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'  # Устанавливаем нужную версию Python
+
+      - name: Установка зависимостей
+        run: |
+          python -m pip install --upgrade pip
+          pip install mkdocs mkdocs-material  # Устанавливаем MkDocs и его зависимости
+
+      - name: Линтинг Markdown файлов
+        run: |
+          pip install markdownlint
+          markdownlint docs/**/*.md  # Проверяем Markdown файлы на ошибки
+
+  build:
+    runs-on: ubuntu-latest  # Запускаем на той же системе
+    needs: lint  # Ждем завершения задания lint
+    steps:
+      - name: Проверка исходного кода
+        uses: actions/checkout@v2  # Проверяем код из репозитория
+
+      - name: Установка Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'  # Устанавливаем нужную версию Python
+
+      - name: Установка зависимостей
+        run: |
+          python -m pip install --upgrade pip
+          pip install mkdocs mkdocs-material  # Устанавливаем MkDocs и его зависимости
+
+      - name: Сборка сайта
+        run: mkdocs build --clean  # Сборка статики
+
+  deploy:
+    runs-on: ubuntu-latest  # Используем Ubuntu для выполнения работы
+    needs: build  # Ждем завершения сборки
+    steps:
+      - name: Проверка исходного кода
+        uses: actions/checkout@v2  # Проверяем код из репозитория
+
+      - name: Деплой на GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # Токен для деплоя
+          publish_dir: ./site  # Папка с собранным сайтом
+          publish_branch: gh-pages  # Ветка для деплоя

@@ -1,0 +1,36 @@
+/* Основные стили */
+body {
+    font-family: Arial, sans-serif; /* Задаем основной шрифт */
+    line-height: 1.6;
+}
+
+h1, h2 {
+    color: #3273dc; /* Цвет заголовков */
+}
+
+/* Стиль для основной секции */
+.section {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #f5f5f5; /* Светло-серый фон */
+}
+
+/* Карточки для команд */
+.card {
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 15px;
+}
+
+/* Стиль для подвала */
+.footer {
+    background-color: #3273dc; /* Цвет подвала */
+    color: white;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
