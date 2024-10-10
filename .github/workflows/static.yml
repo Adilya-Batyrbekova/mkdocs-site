@@ -1,43 +1,49 @@
-# Простой рабочий процесс для развертывания статического содержимого на GitHub Pages
-name: Deploy static content to Pages
+name: Deploy MkDocs Site to GitHub Pages
 
 on:
-  # Выполняется для пушей, направленных на ветку по умолчанию
   push:
-    branches: ["main"]
-
-  # Позволяет запустить этот рабочий процесс вручную на вкладке "Действия".
+    branches:
+      - main
   workflow_dispatch:
 
-# Устанавливает разрешения GITHUB_TOKEN, чтобы разрешить развертывание на страницах GitHub.
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Разрешите только одно одновременное развертывание, пропуская запуски, стоящие в очереди между текущим и последним запуском, стоящим в очереди.
-# Однако НЕ отменяйте текущие запуски, поскольку мы хотим дать возможность завершить производственные развертывания.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
 jobs:
-  # Одно задание развертывания, поскольку мы просто развертываем
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install mkdocs mkdocs-material
+
+      - name: Build MkDocs site
+        run: |
+          mkdocs build
+
+      - name: Upload site to artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Загрузите весь репозиторий
-          path: '.'
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
